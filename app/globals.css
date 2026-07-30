@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@import "@fontsource/cormorant-garamond/500.css";
+@import "@fontsource/cormorant-garamond/600.css";
+@import "@fontsource/cormorant-garamond/600-italic.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+
+:root {
+  --bg-primary: #080808;
+  --bg-secondary: #101010;
+  --card: #151515;
+  --card-hover: #1a1a1a;
+  --soft-section: #1a1a1a;
+
+  /* Rose pink accent system — no gold anywhere */
+  --accent: #f45c9b;
+  --accent-soft: #ff78b5;
+  --accent-highlight: #ffd7e8;
+  --accent-dark: #c23c78;
+
+  --text-primary: #ffffff;
+  --text-secondary: #bbbbbb;
+  --text-muted: #7a7a7a;
+
+  --divider: rgba(255, 255, 255, 0.08);
+  --glow: rgba(244, 92, 155, 0.15);
+  --glow-hover: rgba(244, 92, 155, 0.3);
+  --shadow: rgba(0, 0, 0, 0.45);
+}
+
+@theme inline {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-card: var(--card);
+  --color-card-hover: var(--card-hover);
+  --color-soft-section: var(--soft-section);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-highlight: var(--accent-highlight);
+  --color-accent-dark: var(--accent-dark);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+button, .tracking-button {
+  letter-spacing: 1px;
+}
+
+::selection {
+  background: var(--glow-hover);
+  color: var(--accent-highlight);
+}
+
+/* thin rose scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-dark);
+  border-radius: 8px;
+}
+
+.accent-gradient-text {
+  background: linear-gradient(120deg, var(--accent-dark), var(--accent), var(--accent-soft), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.divider-line {
+  height: 1px;
+  width: 64px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+/* Focus states for accessibility (WCAG AA) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float {
+  animation: floatY 6s ease-in-out infinite;
+}
+
+@keyframes petalDrift {
+  0% { transform: translate(0, -10%) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.4; }
+  100% { transform: translate(-20px, 110%) rotate(180deg); opacity: 0; }
+}
+.animate-petal {
+  animation: petalDrift 14s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.btn-shine {
+  background-size: 200% 100%;
+  transition: background-position 0.6s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.btn-shine:hover {
+  background-position: -100% 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
